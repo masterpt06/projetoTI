@@ -56,7 +56,7 @@
                                 Disciplines
                             </flux:sidebar.item>
                         @endcan
-                        @can('viewCurriculum', \App\Models\Course::class)
+                       {{-- @can('viewCurriculum', \App\Models\Course::class)
                             <flux:navlist.group heading="Curricula" expandable :expanded="request()->routeIs('courses.curriculum')">
                                 @foreach($sharedCourses as $course)
                                     <flux:sidebar.item :href="route('courses.curriculum', ['course' => $course])"
@@ -66,7 +66,7 @@
                                     </flux:sidebar.item>
                                 @endforeach
                             </flux:navlist.group>
-                        @endcan
+                        @endcan--}}
                     </flux:sidebar.group>
                 </flux:sidebar.nav>
             @endif
@@ -166,11 +166,13 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="match(auth()->user()->type) {
-                                'S' => route('students.show', ['student' => auth()->user()->student]),
-                                'T' => route('teachers.show', ['teacher' => auth()->user()->teacher]),
-                                'A' => route('administratives.show', ['administrative' => auth()->user()])
-                            }" icon="document-text" wire:navigate>
+                        <flux:menu.item :href="match(auth()->user()->user_type ?? 'anonimos') {
+                            'A' => route('dashboard'),
+                            'C' => route('profile.edit'),
+                            'F' => route('profile.edit'),
+                            'anonimos' => route('login')
+                            
+                        }" icon="document-text" wire:navigate>
                             My Record
                         </flux:menu.item>
                         <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
