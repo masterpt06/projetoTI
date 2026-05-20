@@ -24,15 +24,22 @@ class Tshirt_image extends Model
         } . $this->name;
     }*/
 
-    public function getImageUrlAttribute()
+    /*public function getImageUrlAttribute()
     {
         if ($this->image_url &&Storage::disk('public')->exists("tshirt_images/{$this->image_url}")) {
 
         return asset("storage/tshirt_images/{$this->image_url}");
     }
+    }*/
+    public function getPhotoFullUrlAttribute()
+    {
+        if ($this->image_url && Storage::disk('public')->exists("tshirt_images/{$this->image_url}")) {
+            return asset("storage/tshirt_images/{$this->image_url}");
+        }
+    }
 
     //return asset("storage/photos/anonymous.png");
-    }
+   
     public function categories(): HasOne
     {
         return $this->hasOne(Category::class, 'category_id');
@@ -40,6 +47,10 @@ class Tshirt_image extends Model
     public function order_items(): HasMany
     {
         return $this->hasMany(Order_item::class,'tshirt_image_id', 'id');
+    }
+    public function customers(): HasOne
+    {
+        return $this->hasOne(Customer::class, 'customer_id');
     }
 
     /*public function students(): HasMany

@@ -8,12 +8,13 @@ use App\Http\Controllers\AdministrativeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\TshirtController;
 use App\Models\Student;
 
 /* ----- PUBLIC ROUTES ----- */
 Route::view('/', 'home')->name('home');
 
-Route::get('courses/showcase', [CourseController::class, 'showCase'])
+Route::get('courses/showcase', [TshirtController::class, 'showCase'])
     ->name('courses.showcase');
 
 Route::get('courses/{course}/curriculum', [CourseController::class, 'showCurriculum'])
@@ -91,7 +92,7 @@ Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
 
 /* ----- OTHER PUBLIC ROUTES ----- */
 /* ----- these routes should be positioned after related routes to avoid conflicts ----- */
-Route::resource('courses', CourseController::class)->only(['show']);
+Route::resource('courses', TshirtController::class)->only(['show']);
 Route::resource('disciplines', DisciplineController::class)->only(['index', 'show']);
 
 require __DIR__.'/settings.php';

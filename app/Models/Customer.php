@@ -40,6 +40,10 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+    public function tshirt_images(): HasMany
+    {
+        return $this->hasMany(Tshirt_image::class, 'customer_id','id');
+    }
 
     /*public function students(): HasMany
     {

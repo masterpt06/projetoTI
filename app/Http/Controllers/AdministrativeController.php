@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Gate;
 class AdministrativeController extends Controller implements HasMiddleware
 {
     use \App\Traits\UserPhotoFileStorage;
-
+    
     public static function middleware(): array
     {
         return [

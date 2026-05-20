@@ -1,4 +1,4 @@
-<x-layouts::main-content title="List of courses">
+<x-layouts::main-content title="List of tshirts">
     <div class="flex flex-col">
         @each('courses.partials.cards', $courses, 'course')
     </div>
