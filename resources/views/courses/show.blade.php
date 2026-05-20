@@ -1,5 +1,5 @@
-<x-layouts::main-content :title="$course->name"
-                        :heading="'Course '. $course->name">
+<x-layouts::main-content :title="$tshirtImage->name"
+                        :heading="'Tshirt'. $tshirtImage->name">
     <div class="flex flex-col space-y-6">
         <div class="max-full">
             <section>
@@ -8,13 +8,13 @@
                 </div>
                 @include('partials.form-buttons',[
                         'entity' => 'course',
-                        'value' => $course,
-                        'new' => Gate::check('create', \App\Models\Course::class),
-                        'edit' => Gate::check('update', $course),
-                        'delete' => Gate::check('delete', $course)
+                        'value' => $tshirtImage,
+                        'new' => Gate::check('create', \App\Models\Tshirt_image::class),
+                        'edit' => Gate::check('update', $tshirtImage),
+                        'delete' => Gate::check('delete', $tshirtImage)
                         ])
 
-                @if($course->disciplines->isEmpty())
+                <!--@if($tshirtImage->disciplines->isEmpty())
                     <p class="mt-12 text-xl text-gray-700 dark:text-gray-300">
                         This course has no assigned disciplines.
                     </p>
@@ -28,11 +28,11 @@
                                             class="pt-4"
                         />
                     @endcan
-                @endif
+                @endif-->
             </section>
         </div>
     </div>
-    <form id="delete-form" method="POST" action="{{ route('courses.destroy', ['course' => $course]) }}" class="hidden">
+    <form id="delete-form" method="POST" action="{{ route('courses.destroy', ['course' => $tshirtImage]) }}" class="hidden">
         @csrf
         @method('DELETE')
     </form>

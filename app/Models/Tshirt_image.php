@@ -36,6 +36,7 @@ class Tshirt_image extends Model
         if ($this->image_url && Storage::disk('public')->exists("tshirt_images/{$this->image_url}")) {
             return asset("storage/tshirt_images/{$this->image_url}");
         }
+        return asset("storage/photos/anonymous.png");
     }
 
     //return asset("storage/photos/anonymous.png");

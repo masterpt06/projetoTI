@@ -4,61 +4,24 @@
 @endphp
 
 
-<div class="flex flex-col sm:flex-row sm:justify-between space-x-8">
-    <div class="grow mt-6 space-y-4">
-        <div class="w-full flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-            <div class="w-full sm:w-64">
-                <flux:input name="abbreviation" label="Abbreviation" value="{{ old('abbreviation', $course->abbreviation) }}"
-                    :disabled="$readonly" :readonly="$mode == 'edit'"/>
-            </div>
+<div class="flex flex-col sm:w-64 items-center space-y-2 sm:-mt-[1.5rem]">
 
-            <flux:radio.group name="type" label="Type of course" :disabled="$readonly" variant="pills"
-                class="ps-8 py-2">
-                <flux:radio value="Degree" label=" Degree" :checked="old('type', $course->type) == 'Degree'" />
-                <flux:radio value="Master" label="Master " :checked="old('type', $course->type) == 'Master'" />
-                <flux:radio value="TESP" label="TESP" :checked="old('type', $course->type) == 'TESP'" />
-                <flux:error name="type" />
-            </flux:radio.group>
+    {{-- Nome da imagem --}}
+    <p class="text-sm text-gray-600 dark:text-gray-300 break-all text-center">
+        {{ $tshirtImage->image_file ?? $tshirtImage->image_url ?? 'No image uploaded' }}
+    </p>
+
+    {{-- Imagem --}}
+    @if($tshirtImage->photoFullUrl)
+        <img
+            src="{{ $tshirtImage->photoFullUrl }}"
+            alt="Course image"
+            class="w-64 h-64 object-cover rounded-xl border border-gray-200 dark:border-gray-700"
+        >
+    @else
+        <div class="w-64 h-64 flex items-center justify-center rounded-xl border border-gray-200 dark:border-gray-700 text-gray-400">
+            No image
         </div>
+    @endif
 
-        <flux:input name="name" label="Name" value="{{ old('name', $course->name) }}" :disabled="$readonly" />
-
-        <flux:input name="name_pt" label="Name (Portuguese)" value="{{ old('name_pt', $course->name_pt) }}" :disabled="$readonly" />
-
-        <div class="flex flex-row sm:flex-row sm:space-x-4">
-            <div class="w-full">
-                <flux:input name="semesters" label="Nº Semesters" value="{{ old('semesters', $course->semesters) }}" :disabled="$readonly" />
-            </div>
-            <div class="w-full">
-                <flux:input name="ECTS" label="Nº ECTS" value="{{ old('ECTS', $course->ECTS) }}" :disabled="$readonly" />
-            </div>
-            <div class="w-full">
-                <flux:input name="places" label="Nº Places" value="{{ old('places', $course->places) }}" :disabled="$readonly" />
-            </div>
-        </div>
-
-        <flux:input name="contact" label="Contact" value="{{ old('contact', $course->contact) }}" :disabled="$readonly" />
-
-        <flux:textarea name="objectives" label="Objective" :disabled="$readonly" :resize="$readonly ? 'none' : 'vertical'" rows="5" >
-            {{ old('objectives', $course->objectives) }}
-        </flux:textarea>
-        <flux:error name="objectives" />
-
-        <flux:textarea name="objectives_pt" label="Objective (Portuguese)" :disabled="$readonly" :resize="$readonly ? 'none' : 'vertical'" rows="5" >
-            {{ old('objectives_pt', $course->objectives_pt) }}
-        </flux:textarea>
-        <flux:error name="objectives_pt" />
-    </div>
-    <div>
-        <x-field.image
-            name="image_file"
-            label="Image"
-            width="md"
-            :readonly="$readonly"
-            deleteTitle="Delete Image"
-            :deleteAllow="($mode == 'edit') && ($course->imageUrl)"
-            deleteForm="form_to_delete_course_image"
-            :imageUrl="$course->imageUrl"
-            class="sm:-mt-[1.5rem] w-full sm:w-64"/>
-    </div>
 </div>

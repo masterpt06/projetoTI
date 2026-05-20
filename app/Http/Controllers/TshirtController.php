@@ -33,13 +33,12 @@ class TshirtController extends Controller //implements HasMiddleware
     public function index(): View
     {
         $allTshirts = Tshirt_image::orderBy('name')->paginate(20);
-        //debug($allCourses);
         return view('courses.index')->with('courses', $allTshirts);
     }
 
     public function showCase(): View
     {
-        $alltshirts = Tshirt_image::all();
+        $alltshirts = Tshirt_image::paginate(20);
         return view('courses.showcase')->with('courses', $alltshirts);
     }
 
@@ -48,9 +47,9 @@ class TshirtController extends Controller //implements HasMiddleware
         return view('courses.showCurriculum')->with('course', $course);
     }
 
-    public function show(Course $course): View
+    public function show(Tshirt_image $tshirtImage): View
     {
-        return view('courses.show')->with('course', $course);
+        return view('courses.show')->with('tshirtImage', $tshirtImage);
     }
 
     public function create(): View
