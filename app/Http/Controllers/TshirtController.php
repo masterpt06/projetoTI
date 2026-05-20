@@ -47,9 +47,9 @@ class TshirtController extends Controller //implements HasMiddleware
         return view('courses.showCurriculum')->with('course', $course);
     }
 
-    public function show(Tshirt_image $tshirtImage): View
+    public function show(Tshirt_image $course): View
     {
-        return view('courses.show')->with('tshirtImage', $tshirtImage);
+        return view('courses.show')->with('tshirtImage', $course);
     }
 
     public function create(): View
