@@ -1,5 +1,5 @@
-<x-layouts::main-content :title="$tshirtImage->name"
-                        :heading="'Tshirt'. $tshirtImage->name">
+<x-layouts::main-content :title="$tShirtImage->name"
+                        :heading="'Tshirt'. $tShirtImage->name">
     <div class="flex flex-col space-y-6">
         <div class="max-full">
             <section>
@@ -7,12 +7,13 @@
                     @include('courses.partials.fields', ['mode' => 'show'])
                 </div>
                 @include('partials.form-buttons',[
-                        'entity' => 'tshirtImage',
-                        'value' => $tshirtImage,
+                        'entity' => 'tShirtImage',
+                        'value' => $tShirtImage,
                         'new' => Gate::check('create', \App\Models\Tshirt_image::class),
-                        'edit' => Gate::check('update', $tshirtImage),
-                        'delete' => Gate::check('delete', $tshirtImage)
+                        'edit' => Gate::check('update', $tShirtImage),
+                        'delete' => Gate::check('delete', $tShirtImage)
                         ])
+                
 
                 
             </section>

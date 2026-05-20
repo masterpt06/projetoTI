@@ -77,7 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::view('dashboard', 'dashboard')->name('dashboard');
         Route::delete('courses/{course}/image', [CourseController::class, 'destroyImage'])
             ->name('courses.image.destroy');
-        Route::resource('courses', CourseController::class)->except(['show']);
+        Route::resource('tshirts', TshirtController::class)->except(['show']);
         Route::resource('departments', DepartmentController::class);
     });
 });
@@ -92,7 +92,7 @@ Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
 
 /* ----- OTHER PUBLIC ROUTES ----- */
 /* ----- these routes should be positioned after related routes to avoid conflicts ----- */
-Route::resource('courses', TshirtController::class)->only(['show']);
+Route::resource('tshirts', TshirtController::class)->only(['show']);
 Route::resource('disciplines', DisciplineController::class)->only(['index', 'show']);
 
 require __DIR__.'/settings.php';

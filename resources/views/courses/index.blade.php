@@ -1,4 +1,4 @@
-<x-layouts::main-content :title="__('Courses')"
+<x-layouts::main-content :title="__('tShirtImage')"
                         heading="List of tshirts"
                         subheading="Manage the courses offered by the institution">
   <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl ">
@@ -10,15 +10,13 @@
             </div>
         @endcan
         <div class="my-4 font-base text-sm text-gray-700 dark:text-gray-300">
-            <x-courses.table :courses="$courses"
+            <x-courses.table :courses="$tShirtImages"
                                     :showView="true"
                                     :showEdit="true"
                                     :showDelete="true"
             />
         </div>
-        <div class="mt-4">
-          {{ $courses->links() }}
-        </div>
+        
       </div>
     </div>
   </div>

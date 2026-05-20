@@ -17,7 +17,7 @@ class TshirtController extends Controller //implements HasMiddleware
 {
     use \App\Traits\CourseImageFileStorage;
 
-    /*public static function middleware(): array
+    public static function middleware(): array
     {
         return [
             new Middleware('can:viewAny,App\Models\Course', only: ['index']),
@@ -28,18 +28,18 @@ class TshirtController extends Controller //implements HasMiddleware
             new Middleware('can:update,course', only: ['edit', 'update']),
             new Middleware('can:delete,course', only: ['destroy']),
         ];
-    }*/
+    }
 
     public function index(): View
     {
-        $allTshirts = Tshirt_image::orderBy('name')->paginate(20);
-        return view('courses.index')->with('courses', $allTshirts);
+        $tShirtImages = Tshirt_image::orderBy('name')->paginate(20);
+        return view('courses.index')->with('tShirtImages', $tShirtImages);
     }
 
     public function showCase(): View
     {
-        $alltshirts = Tshirt_image::paginate(20);
-        return view('courses.showcase')->with('courses', $alltshirts);
+        $tShirtImages = Tshirt_image::paginate(20);
+        return view('courses.showcase')->with('tShirtImages', $tShirtImages);
     }
 
     public function showCurriculum(Course $course): View
@@ -47,9 +47,9 @@ class TshirtController extends Controller //implements HasMiddleware
         return view('courses.showCurriculum')->with('course', $course);
     }
 
-    public function show(Tshirt_image $course): View
+    public function show(Tshirt_image $tshirt): View
     {
-        return view('courses.show')->with('tshirtImage', $course);
+        return view('courses.show')->with('tShirtImage', $tshirt);
     }
 
     public function create(): View

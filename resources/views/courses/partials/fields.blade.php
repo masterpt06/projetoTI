@@ -7,12 +7,12 @@
 <div class="flex flex-col sm:w-64 items-center space-y-2">
 
     <p class="text-sm text-gray-600 dark:text-gray-300 text-center">
-        {{ $tshirtImage->image_url ?? 'No image uploaded' }}
+        {{ $tShirtImage->image_url ?? 'No image uploaded' }}
     </p>
 
-    @if($tshirtImage->photoFullUrl)
+    @if($tShirtImage->photoFullUrl)
         <img
-            src="{{ $tshirtImage->photoFullUrl }}"
+            src="{{ $tShirtImage->photoFullUrl }}"
             class="w-64 h-64 object-cover rounded-xl border"
         >
     @else
