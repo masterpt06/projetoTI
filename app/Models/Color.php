@@ -6,33 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['abbreviation', 'name', 'name_pt', 'type', 'semesters', 'ECTS',
-            'places', 'contact', 'objectives', 'objectives_pt'])]
-#[Table(key: 'abbreviation', keyType: 'string', incrementing: false, timestamps: false)]
-class Course extends Model
+#[Fillable(['name', 'custom', 'deleted_at'])]
+#[Table(key: 'code', keyType: 'string', incrementing: false, timestamps: false)]
+class Color extends Model
 {
-    public function getFullNameAttribute()
+    /*public function getFullNameAttribute()
     {
         return match ($this->type) {
             'Master'    => "Master's in ",
             'TESP'      => 'TeSP - ',
             default     => ''
         } . $this->name;
-    }
+    }*/
 
-    public function getImageUrlAttribute()
+    
+    public function order_items(): HasMany
     {
-        $abrUpper = strtoupper(trim($this->abbreviation));
-        if (Storage::disk('public')->exists("courses/$abrUpper.png")) {
-            return asset("storage/courses/$abrUpper.png");
-        } else {
-            return asset("storage/courses/no_course.png");
-        }
+        return $this->hasMany(Order_item::class, 'color_code', 'code');
     }
+    
 
-    public function students(): HasMany
+    /*public function students(): HasMany
     {
         return $this->hasMany(Student::class, 'course', 'abbreviation');
     }
@@ -40,5 +37,5 @@ class Course extends Model
     public function disciplines(): HasMany
     {
         return $this->hasMany(Discipline::class, 'course', 'abbreviation');
-    }
+    }*/
 }
