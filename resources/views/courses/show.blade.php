@@ -7,7 +7,7 @@
                     @include('courses.partials.fields', ['mode' => 'show'])
                 </div>
                 @include('partials.form-buttons',[
-                        'entity' => 'course',
+                        'entity' => 'tshirtImage',
                         'value' => $tshirtImage,
                         'new' => Gate::check('create', \App\Models\Tshirt_image::class),
                         'edit' => Gate::check('update', $tshirtImage),
